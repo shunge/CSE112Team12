@@ -1,6 +1,4 @@
 # CSE112Team12
-function foo(bar)
-
 
 General Style Rules:
 - 2 spaces for indentation
