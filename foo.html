@@ -13,10 +13,16 @@
 </head>
 
 <body>
-  <form action="/action_page.php">
-    First name: <input type="text" name="fname"><br>
-    <input type="submit" value="Submit">
+  <form name="compareStrings">
+    Enter a string: <input id="inputString" type="text" name="inputString"><br>
+    <input type="submit" value="Submit" onclick="foo()">
   </form> 
+
+  <script type="text/javascript">
+  	function foo() {
+  		alert (document.getElementById("inputString").value === "baz");
+  	}
+  </script>
 
 
 </body>
