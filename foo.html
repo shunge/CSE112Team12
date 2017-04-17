@@ -8,15 +8,19 @@
   <meta name="description" content="Function Foo">
   <meta name="author" content="SitePoint">
 
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <link rel="stylesheet" href="css/style.css">
   
 </head>
 
 <body>
-  <form name="compareStrings">
-    Enter a string: <input id="inputString" type="text" name="inputString"><br>
-    <input type="submit" value="Submit" onclick="foo()">
-  </form> 
+  <div class="container">
+    <form name="compareStrings">
+      Enter a string
+      <input class="input" id="inputString" type="text" name="inputString"><br>
+      
+      <input class="submit" type="submit" value="Submit" onclick="foo()">
+    </form> 
+  </div>
 
   <script type="text/javascript">
     function foo() {
