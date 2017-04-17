@@ -1,5 +1,7 @@
 # CSE112Team12
 
+TODO: Add style lint checker
+
 General Style Rules:
 - 2 spaces for indentation
 - no new line between function signature and curly brackets
