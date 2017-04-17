@@ -24,6 +24,7 @@
    <!-- script
    ================================================== -->
 	<script src="js/modernizr.js"></script>
+	<script src="foo.js"></script>
 
    <!-- favicons
 	================================================== -->
@@ -121,15 +122,9 @@
 			    <form name="compareStrings">
 			      <input class="input" id="inputString" type="text" name="inputString"><br>
 			      
-			      <input class="submit" type="submit" value="Submit" onclick="foo()">
+			      <input type="button" value="foo" onclick="foo()">
 			    </form> 
 			  </div> </center>
-
-			  <script type="text/javascript">
-			    function foo() {
-			      alert (document.getElementById("inputString").value === "baz");
-			    }
-			  </script>
    		</div>
 
    	</div> <!-- /cta-content -->
