@@ -123,7 +123,7 @@
     }
 
     function setFormat(strNewRegex) {
-      re = new Regex(String.raw`${strNewRegex}`);
+      re = new RegExp(String.raw`${strNewRegex}`);
       strRe = String.raw`${strNewRegex}`;
     }
 
