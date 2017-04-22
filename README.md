@@ -10,3 +10,17 @@ npm install
 ```
 ### Viewing
 Running `node index.js` will have your application listen on localhost:3000
+
+### Development Flow
+When working on bugs or features
+
+- Create branch off `Dev`
+- Develop on that branch
+- Merge back into Dev
+- During Saturday meetings we'll merge `Dev` with `Master`
+
+### Deployment Flow
+From GCP Shell
+
+- pull `master`
+- gcloud app deploy --project <project_name>
