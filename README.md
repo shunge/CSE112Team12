@@ -14,7 +14,8 @@ Running `node index.js` will have your application listen on localhost:3000
 ### Development Flow
 When working on bugs or features
 
-- Create branch off `Dev`
+- `git checkout Dev`
+- `git checkout -b <branch_name>`
 - Develop on that branch
 - Merge back into Dev
 - During Saturday meetings we'll merge `Dev` with `Master`
