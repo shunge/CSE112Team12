@@ -1,12 +1,37 @@
 {
-  "name": "node-travis",
-  "version": "0.1.0",
-  "devDependencies": {
-    "grunt": "^0.4.1",
-    "grunt-cli": "0.1.9",
-    "grunt-contrib-jshint": "^0.6.5"
+  "name": "cse112project",
+  "version": "1.0.0",
+  "description": "Node application with Mocha/Enzyme",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
   },
   "scripts": {
-    "test": "grunt --verbose"
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/safarsi/CSE112Team12.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/safarsi/CSE112Team12/issues"
+  },
+  "homepage": "https://github.com/safarsi/CSE112Team12#readme",
+  "devDependencies": {
+    "enzyme": "^2.8.2",
+    "jshint": "^2.9.4",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "material-ui": "^0.17.4",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router": "^4.1.1",
+    "react-tap-event-plugin": "^2.0.1",
+    "validator": "^7.0.0"
   }
 }

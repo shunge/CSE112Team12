@@ -1,73 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title>Contact List</title>
-  <style>
-    div#contactformwrapper {
-      width: 300px;
-      margin: 50px auto;
-    }
-    div#contactformwrapper label {
-      text-align: right;
-      display: inline-block;
-      width: 120px;
-      margin: 5px 0px;
-    }
-    div#displaypanel {
-      margin: 50px auto;
-    }
-    input[type='button'] {
-      display: block;
-      width: 150px;
-      margin-top: 5px;
-      margin-left: 80px;
-      line-height: inherit;;
-    }
-    input {
-      line-height: inherit;
-      margin: 0;
-    }
-    h1 {
-      font-size: 16px;
-      font-weight: normal;
-    }
-  </style>
-  <script>
-    var re = new RegExp(String.raw`^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$`);
-
-    function isValidPhoneNumber(strNumToCheck) {
-      var matches = strNumToCheck.match(re);
-      if (matches) {
-        return true;
-      }
-      return false;
-    }
-    function setFormat() {
-      var v = document.getElementById('phoneformat').value;
-      var telNumber = document.getElementById('telnumber').value;
-      //var re = new RegExp(String.raw`^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$`);
-      if (v != null && v !="") {
-        re = new RegExp(String.raw`${v}`);
-      }
-      alert(isValidPhoneNumber(telNumber));
-    }
-
-  </script>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Contact List</title>
+	<style>
+		div#contactformwrapper {
+			width: 300px;
+			margin: 50px auto;
+		}
+		div#contactformwrapper label {
+			text-align: right;
+			display: inline-block;
+			width: 120px;
+			margin: 5px 0px;
+		}
+		div#displaypanel {
+			margin: 50px auto;
+		}
+		input[type='button'] {
+			display: block;
+			width: 150px;
+			margin-top: 5px;
+			margin-left: 80px;
+			line-height: inherit;;
+		}
+		input {
+			line-height: inherit;
+			margin: 0;
+		}
+		h1 {
+			font-size: 16px;
+			font-weight: normal;
+		}
+	</style>
+	<script src="js/phone.js"></script>
 </head>
-<body>
-  <div id="contactformwrapper">
-    <form name="contactform">
-      <p>Change the valid phone number format:</p>
-      <label for="phoneformat">New Regex:</label>
-      <input id="phoneformat" name="phoneformat" type="text" /><br />
-      <p>Enter phone number:</p>
-      <label for="telnumber">Phone Number:</label>
-      <input id="telnumber" name="telnumber" type="text" /><br />
-      <input type="button" value="Submit" onClick="setFormat()"/>
-    </form>
 
-  </div>
-  
+<body>
+	<div id="contactformwrapper">
+		<form name="contactform">
+			<p>Change the valid phone number format:</p>
+			<label for="phoneformat">New Regex:</label>
+			<input id="phoneformat" name="phoneformat" type="text" /><br />
+			<p>Enter phone number:</p>
+			<label for="telnumber">Phone Number:</label>
+			<input id="telnumber" name="telnumber" type="text" /><br />
+			<input type="button" value="Submit" onClick="setFormat()"/>
+		</form>
+
+	</div>
+	
 </body>
 </html>
