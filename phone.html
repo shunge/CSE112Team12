@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Contact List</title>
 	<style>
@@ -52,3 +53,168 @@
 	
 </body>
 </html>
+=======
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Contact List</title>
+  <style>
+    div#contactformwrapper {
+      width: 300px;
+      margin: 50px auto;
+    }
+    div#contactformwrapper label {
+      text-align: right;
+      display: inline-block;
+      width: 120px;
+      margin: 5px 0px;
+    }
+    div#displaypanel {
+      margin: 50px auto;
+    }
+    input[type='button'] {
+      display: block;
+      width: 150px;
+      margin-top: 5px;
+      margin-left: 80px;
+      line-height: inherit;;
+    }
+    input {
+      line-height: inherit;
+      margin: 0;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: normal;
+    }
+  </style>
+  <script>
+    var re = new RegExp(String.raw`^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$`);
+    var strRe = String.raw`^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$`;
+    var friends = [];
+
+    function start() {
+      friends[0] = { firstName: "Bill",
+               lastName: "Gates",
+               number: "206-709-3400" };
+      friends[1] = { firstName: "David",
+               lastName: "Lee",
+               number: "123-456-7890" };
+    }
+
+    function displaycontacts() {
+      var dpanel = document.getElementById('displaypanel');
+      while(dpanel.firstChild) {
+        dpanel.removeChild(dpanel.firstChild);
+      }
+      var pmode = document.createElement('p');
+      pmode.append(document.createTextNode('Displaying all contacts: '));
+      dpanel.appendChild(pmode);
+      var displaylist = document.createElement('ul');
+      displaylist.setAttribute('id', 'displaylist');
+      dpanel.appendChild(displaylist);
+      for(var i=0; i<friends.length; i++) {
+        var newli = document.createElement('li');
+        newli.appendChild(document.createTextNode(friends[i].firstName + ' ' + friends[i].lastName));
+        var newol = document.createElement('ul');
+        var num = document.createElement('li');
+        num.appendChild(document.createTextNode('Phone Number: ' + friends[i].number));
+        newol.appendChild(num);
+        newli.appendChild(newol)
+
+        displaylist.appendChild(newli);
+      }
+    }
+    function addcontact() {
+      var a = document.getElementById('firstname').value;
+      var b = document.getElementById('lastname').value;
+      var c = document.getElementById('telnumber').value;
+
+      if ( a==null || a==''
+        || b==null || b==''
+        || c==null || c=='') {
+        alert('Please fill all required fields!');
+      } else if (!isValidPhoneNumber(c)) {
+        alert('Phone numbers should be in the form of: ' + strRe);
+      } else {
+        var newfriend = {firstName: a, lastName: b, number: c};
+        friends.push(newfriend);
+        alert('Contact added successfully.');
+      }
+    }
+    function search() {
+      var searchfname = document.getElementById('searchfname').value;
+      var searchlname = document.getElementById('searchlname').value;
+      var dpanel = document.getElementById('displaypanel');
+      while(dpanel.firstChild) {
+        dpanel.removeChild(dpanel.firstChild);
+      }
+      var pmode = document.createElement('p');
+      pmode.append(document.createTextNode('Displaying all contacts with first name: \'' + searchfname + '\' or last name: \'' + searchlname + '\''));
+      dpanel.appendChild(pmode);
+      var displaylist = document.createElement('ul');
+      displaylist.setAttribute('id', 'displaylist');
+      dpanel.appendChild(displaylist);
+      for(var i=0; i<friends.length; i++) {
+        if( friends[i].firstName.toLowerCase() === searchfname.toLowerCase()
+         || friends[i].lastName.toLowerCase() === searchlname.toLowerCase()) {
+          var newli = document.createElement('li');
+          newli.appendChild(document.createTextNode(friends[i].firstName + ' ' + friends[i].lastName));
+          var newol = document.createElement('ul');
+          var num = document.createElement('li');
+          num.appendChild(document.createTextNode('Phone Number: ' + friends[i].number));
+          newol.appendChild(num);
+          newli.appendChild(newol)
+
+          displaylist.appendChild(newli);
+        }
+      }
+    }
+
+    function readNewFormat() {
+      var v = document.getElementById('phoneformat').value;
+      console.log(v);
+      setFormat(v);
+    }
+
+    function setFormat(strNewRegex) {
+      re = new RegExp(String.raw`${strNewRegex}`);
+      strRe = String.raw`${strNewRegex}`;
+    }
+
+    function isValidPhoneNumber(strNumToCheck) {
+      return strNumToCheck.match(re);
+    }
+  </script>
+</head>
+<body onLoad="start()">
+  <div id="contactformwrapper">
+    <form name="contactform">
+      <p>Fill out the information below to add a new contact:</p>
+      <label for="firstname">First Name:</label>
+      <input id="firstname" name="firstname" type="text" /><br />
+      <label for="lastname">Last Name:</label>
+      <input id="lastname" name="lastname" type="text" /><br />
+      <label for="telnumber">Phone Number:</label>
+      <input id="telnumber" name="telnumber" type="text" /><br />
+      <input type="button" value="Submit" onClick="addcontact()"/>
+      <input type="button" onClick="displaycontacts()" value="Display Contacts" />
+    </form>
+    <form>
+      <p>Search your contacts by first or last name:</p>
+      <label for="searchfname">First Name:</label>
+      <input id="searchfname" name="searchfname" type="text" /><br />
+      <label for="searchfname">Last Name:</label>
+      <input id="searchlname" name="searchlname" type="text" /><br />
+      <input type="button" value="Search" onClick="search()" />
+    </form>
+    <form>
+      <p>Change the valid phone number format:</p>
+      <label for="phoneformat">New Regex:</label>
+      <input id="phoneformat" name="phoneformat" type="text" /><br />
+      <input type="button" value="Set Format" onClick="readNewFormat()" />
+    </form>
+  </div>
+  <div id="displaypanel">
+  </div>
+</body>
+</html>
+>>>>>>> 5072ff9e09eab3d68d04451a4e63d30ef0b29a8a
