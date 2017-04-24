@@ -37808,6 +37808,7 @@
 
 	    _this.changeTest = _this.changeTest.bind(_this);
 	    _this.setFormat = _this.setFormat.bind(_this);
+	    _this.convertToRegex = _this.convertToRegex.bind(_this);
 	    _this.isValidPhoneNumber = _this.isValidPhoneNumber.bind(_this);
 	    return _this;
 	  }
@@ -37826,12 +37827,31 @@
 	      }
 	    }
 	  }, {
+	    key: 'convertToRegex',
+	    value: function convertToRegex(strPhoneInput) {
+	      console.log('Str to parse and transform to regex: ' + strPhoneInput);
+	      var strSplit = strPhoneInput.split(/(\d+)/);
+	      var strBuildRe = '';
+	      console.log('Str split to parts: ' + strSplit);
+	      for (var strArrayIdx = 0; strArrayIdx < strSplit.length; strArrayIdx++) {
+	        if (!strSplit[strArrayIdx] || strSplit[strArrayIdx] === '') {
+	          continue;
+	        } else if (isNaN(parseInt(strSplit[strArrayIdx]))) {
+	          strBuildRe += strSplit[strArrayIdx].replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+	        } else {
+	          strBuildRe += '[0-9]{' + strSplit[strArrayIdx].length + '}';
+	        }
+	      }
+	      console.log('New regex from Str: ' + strBuildRe);
+	      return strBuildRe;
+	    }
+	  }, {
 	    key: 'setFormat',
 	    value: function setFormat(event) {
 	      //var re = new RegExp(String.raw`^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$`);
-	      var format = encodeURIComponent(this.state.test.format);
+	      var format = this.convertToRegex(this.state.test.format);
 	      if (format != null && format != "") {
-	        re = new RegExp(String.raw(_templateObject2, format));
+	        this.re = new RegExp(String.raw(_templateObject2, format));
 	      }
 	      var formatSetTo = "Format updated to " + format;
 	      alert(formatSetTo);

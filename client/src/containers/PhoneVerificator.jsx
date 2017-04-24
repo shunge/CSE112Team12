@@ -24,6 +24,7 @@ class PhoneVerificator extends React.Component {
 
     this.changeTest = this.changeTest.bind(this);
     this.setFormat = this.setFormat.bind(this);
+    this.convertToRegex = this.convertToRegex.bind(this);
     this.isValidPhoneNumber = this.isValidPhoneNumber.bind(this);
   }
 
@@ -40,15 +41,35 @@ class PhoneVerificator extends React.Component {
      
   }
 
+  convertToRegex(strPhoneInput) {
+  console.log('Str to parse and transform to regex: ' + strPhoneInput);
+  var strSplit = strPhoneInput.split(/(\d+)/);
+  var strBuildRe = '';
+  console.log('Str split to parts: ' + strSplit);
+  for(var strArrayIdx = 0; strArrayIdx<strSplit.length; strArrayIdx++) {
+    if(!strSplit[strArrayIdx] || strSplit[strArrayIdx] === '') {
+      continue;
+    } else if (isNaN(parseInt(strSplit[strArrayIdx]))) {
+      strBuildRe += strSplit[strArrayIdx].replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+    } else {
+      strBuildRe += '[0-9]{' + strSplit[strArrayIdx].length + '}';
+    }
+  }
+  console.log('New regex from Str: ' + strBuildRe);
+  return strBuildRe;
+}
+
   setFormat(event) {
   //var re = new RegExp(String.raw`^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$`);
-  const format = encodeURIComponent(this.state.test.format);
+  const format = this.convertToRegex(this.state.test.format);
     if (format != null && format !="") {
       this.re = new RegExp(String.raw`${format}`);
     }
     var formatSetTo = "Format updated to "+format;
     alert(formatSetTo); 
   }
+
+
 
   /**
    * Change the user object.
