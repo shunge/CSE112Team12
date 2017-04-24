@@ -1,13 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
   <title>Phone Functions</title>
   <link rel="stylesheet" type="text/css" href="css/phone.css" />
+  <script src="js/phone.js"></script>
 </head>
-
 <body>
-  <div id="react-app"></div>
-  <script src="js/app.js"></script>
-</body>
+  <div id="phoneForm-app"></div>
+  <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+  <script type="application/javascript">
+    var PhoneForm = React.createClass({
+      propTypes: {
+        value: React.PropTypes.object.isRequired,
+        onChange: React.PropTypes.func.isRequired,
+        onSubmit: React.PropTypes.func.isRequired
+      },
+
+      onPhoneFormatChange: function(e) {
+        this.props.onChange(Object.assign({}, this.props.value, {format: e.target.value}));
+      },
+
+      onPhoneNoChange: function(e) {
+        this.props.onChange(Object.assign({}, this.props.value, {phoneNo: e.target.value}));
+      },
+
+      onSubmit: function(e) {
+        e.preventDefault();
+        this.props.onSubmit();
+      },
+
+      render: function() {
+        var oldInputs = this.props.value;
+        var onChange = this.props.onChange;
+
+        return (
+          React.createElement('form', {
+              id: 'PhoneCheckForm',
+              onSubmit: this.onSubmit,
+              noValidate: false
+            },
+            React.createElement('input', {
+              id: 'phoneFormat',
+              type: 'text',
+              placeholder: 'Format (required)',
+              required: 'true',
+              value: this.props.value.format,
+              onChange: this.onPhoneFormatChange
+            }),
+            React.createElement('input', {
+              id: 'phoneNo',
+              type: 'text',
+              placeholder: 'Phone Number (required)',
+              required: 'true',
+              value: this.props.value.phoneNo,
+              onChange: this.onPhoneNoChange
+            }),
+            React.createElement('button', {type: 'submit'}, "Add Contact")
+          )
+        );
+      },
+    })
+
+    var PhoneView = React.createClass({
+      propTypes: {
+        phoneNumbers:      React.PropTypes.object.isRequired,
+        onPhoneChanged:    React.PropTypes.func.isRequired,
+        onCheckFormSubmit: React.PropTypes.func.isRequired,
+      },
+
+      render: function() {
+        return (
+          React.createElement('div', {className: 'PhoneView'},
+            React.createElement(PhoneForm, {
+              value: this.props.phoneNumbers,
+              onChange: this.props.onPhoneChanged,
+              onSubmit: this.props.onCheckFormSubmit
+            })
+          )
+        );
+      }
+    })
+
+    var PHONE_TEMPLATE = {format: "", phoneNo: ""}
+
+    function updatePhoneInputs(phoneNos) {
+      setState({ phoneNumbers: phoneNos });
+    }
+
+    function checkFormSubmit() {
+      var format  = document.getElementById('phoneFormat').value;
+      var phoneNo = document.getElementById('phoneNo').value;
+      console.log(format, phoneNo);
+      setFormat(convertToRegex(format));
+      alert(isValidPhoneNumber(phoneNo));
+      return false;
+    }
+
+    var state = {};
+
+    function setState(changes) {
+      Object.assign(state, changes);
+      ReactDOM.render(
+        React.createElement(PhoneView, Object.assign({}, state, {
+          onPhoneChanged: updatePhoneInputs,
+          onCheckFormSubmit: checkFormSubmit
+        })),
+        document.getElementById('phoneForm-app')
+      );
+    }
+
+    setState({
+      phoneNumbers: Object.assign({}, PHONE_TEMPLATE)
+    });
+  </script>
+  </body>
 </html>

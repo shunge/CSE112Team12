@@ -22,7 +22,7 @@ function isValidPhoneNumber(strNumToCheck) {
  */
 function setFormat(strNewRegex) {
   re = new RegExp(String.raw`${strNewRegex}`);
-  console.log('New accepting regex: ' + String.raw`${strNewRegex}`));
+  console.log('New accepting regex: ' + String.raw`${strNewRegex}`);
 }
 
 /**
