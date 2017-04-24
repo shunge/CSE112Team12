@@ -1,0 +1,17 @@
+var re = new RegExp(String.raw`^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$`);
+
+function isValidPhoneNumber(strNumToCheck) {
+	var matches = strNumToCheck.match(re);
+	if (matches) {
+		return true;
+	}
+	return false;
+}
+function setFormat(format) {
+	//var re = new RegExp(String.raw`^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$`);
+	if (format != null && format !="") {
+		re = new RegExp(String.raw`${v}`);
+	}
+	var formatSetTo = "Format updated to "+format;
+	alert(formatSetTo); 
+}
