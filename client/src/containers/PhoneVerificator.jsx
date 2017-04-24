@@ -31,8 +31,9 @@ class PhoneVerificator extends React.Component {
   isValidPhoneNumber(event) {
     const strNumToCheck = encodeURIComponent(this.state.test.phoneNumber);
     var matches = strNumToCheck.match(this.re);
+    var valid = ((matches && matches.length === 1 && matches[0] === strNumToCheck) ? true : false);
     var formatSetTo = "The phone number is invalid";
-    if (matches) {
+    if (valid) {
       formatSetTo = "The phone number is valid";
       alert(formatSetTo);
     } else {
