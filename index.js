@@ -1,32 +1,21 @@
-var bodyParser = require('body-parser');
 var express = require('express');
-var http = require('http');
-var path = require('path');
+var bodyParser = require('body-parser');
 
 var app = express();
+
+// tell the app to look for static files in these directories
+app.use(express.static('./server/static/'));
+app.use(express.static('./client/dist/'));
 
 
 // all environments
 app.set('port', process.env.PORT || 3000);
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
+  extended: false
 }));
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname,'index.html'));
-})
-
-app.get('/phone', function (req, res) {
-  res.sendFile(path.join(__dirname,'phone.html'));
-})
-
-app.use('/css', express.static(path.join(__dirname, '/css')));
-app.use('/js', express.static(path.join(__dirname, '/js')));
-app.use('/images', express.static(path.join(__dirname, '/images')));
-app.use('/fonts', express.static(path.join(__dirname, '/fonts')));
-
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+// start the server
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000 or http://127.0.0.1:3000');
 });
