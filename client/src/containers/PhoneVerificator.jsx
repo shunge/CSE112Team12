@@ -44,7 +44,7 @@ class PhoneVerificator extends React.Component {
   //var re = new RegExp(String.raw`^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$`);
   const format = encodeURIComponent(this.state.test.format);
     if (format != null && format !="") {
-      re = new RegExp(String.raw`${format}`);
+      this.re = new RegExp(String.raw`${format}`);
     }
     var formatSetTo = "Format updated to "+format;
     alert(formatSetTo); 
