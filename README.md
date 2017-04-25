@@ -1,4 +1,5 @@
 # CSE112Team12
+A team project for CSE112 Spring.
 ## Onboarding
 ### Setup
 ```bash
