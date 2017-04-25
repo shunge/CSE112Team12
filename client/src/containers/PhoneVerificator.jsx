@@ -34,7 +34,7 @@ class PhoneVerificator extends React.Component {
   }
 
   onClickSetFormat(event) {
-    const format = this.phone.convertToRegex(this.state.test.format);
+    const format = this.phone.convertToRegex(encodeURIComponent(this.state.test.format));
     this.phone.setFormat(format);
     alert("Format updated to "+format); 
   }
