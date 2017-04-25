@@ -6,6 +6,9 @@
   "directories": {
     "test": "test"
   },
+  "env": { 
+    "type": "node" 
+  },
   "scripts": {
     "test": "mocha",
     "start": "node index.js"
