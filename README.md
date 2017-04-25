@@ -24,3 +24,12 @@ From GCP Shell
 - pull `master`
 - gcloud app deploy --project <project_name>
 - gets deployed to https://cse112team12.appspot.com/
+
+## Usage 
+
+### IsValidPhoneNumber()
+This function checks if the input value is a correctly entered phone number.
+The user will input a string, if it is a valid phone number, it will return "The phone number is valid". If not, it will return "The phone number is invalid".
+
+### SetFormat()
+The user can set the accepting phone format by inputting an example. The format will be used for IsValidPhoneNumber().
