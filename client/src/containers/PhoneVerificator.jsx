@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react';
 import PhoneForm from '../components/PhoneForm.jsx';
+import Phone from '../../js/phone.js'
 
-
-class PhoneVerificator extends React.Component {
-
-  
+class PhoneVerificator extends React.Component {  
   /**
    * Class constructor.
    */
@@ -19,59 +17,27 @@ class PhoneVerificator extends React.Component {
         phoneNumber: ''
       }
     };
-
-    this.re = new RegExp(String.raw`^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$`);
-
+    this.phone =  new Phone();
     this.changeTest = this.changeTest.bind(this);
-    this.setFormat = this.setFormat.bind(this);
-    this.convertToRegex = this.convertToRegex.bind(this);
-    this.isValidPhoneNumber = this.isValidPhoneNumber.bind(this);
+    this.onClickSetFormat = this.onClickSetFormat.bind(this);
+    this.onClickIsValidPhoneNumber = this.onClickIsValidPhoneNumber.bind(this);
   }
 
-  isValidPhoneNumber(event) {
+  onClickIsValidPhoneNumber(event) {
     const strNumToCheck = encodeURIComponent(this.state.test.phoneNumber);
-    var matches = strNumToCheck.match(this.re);
-    var valid = ((matches && matches.length === 1 && matches[0] === strNumToCheck) ? true : false);
-    var formatSetTo = "The phone number is invalid";
-    if (valid) {
-      formatSetTo = "The phone number is valid";
-      alert(formatSetTo);
-    } else {
-      alert(formatSetTo);
+    if(this.phone.isValidPhoneNumber(strNumToCheck)){
+      alert("The phone number is valid");
+    }else{
+      alert("The phone number is invalid");
     }
      
   }
 
-  convertToRegex(strPhoneInput) {
-  console.log('Str to parse and transform to regex: ' + strPhoneInput);
-  var strSplit = strPhoneInput.split(/(\d+)/);
-  var strBuildRe = '';
-  console.log('Str split to parts: ' + strSplit);
-  for(var strArrayIdx = 0; strArrayIdx<strSplit.length; strArrayIdx++) {
-    if(!strSplit[strArrayIdx] || strSplit[strArrayIdx] === '') {
-      continue;
-    } else if (isNaN(parseInt(strSplit[strArrayIdx]))) {
-      strBuildRe += strSplit[strArrayIdx].replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-    } else {
-      strBuildRe += '[0-9]{' + strSplit[strArrayIdx].length + '}';
-    }
+  onClickSetFormat(event) {
+    const format = this.phone.convertToRegex(this.state.test.format);
+    this.phone.setFormat(format);
+    alert("Format updated to "+format); 
   }
-  console.log('New regex from Str: ' + strBuildRe);
-  return strBuildRe;
-}
-
-  setFormat(event) {
-  //var re = new RegExp(String.raw`^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$`);
-  const format = this.convertToRegex(this.state.test.format);
-    if (format != null && format !="") {
-      this.re = new RegExp(String.raw`${format}`);
-    }
-    var formatSetTo = "Format updated to "+format;
-    alert(formatSetTo); 
-  }
-
-
-
   /**
    * Change the user object.
    *
@@ -94,8 +60,8 @@ class PhoneVerificator extends React.Component {
     return (
       <PhoneForm
         onChange={this.changeTest}
-        onClickSF={this.setFormat}
-        onClickVF={this.isValidPhoneNumber}
+        onClickSF={this.onClickSetFormat}
+        onClickVF={this.onClickIsValidPhoneNumber}
         errors={this.state.errors}
         test={this.state.test}
       />
