@@ -1,5 +1,4 @@
 # CSE112Team12
-
 ## Onboarding
 ### Setup
 ```bash
