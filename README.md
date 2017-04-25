@@ -1,5 +1,6 @@
 # CSE112Team12
 ## Onboarding
+
 ### Setup
 ```bash
 git clone https://github.com/CSE112Spring17/CSE112Team12.git
