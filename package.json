@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --use_strict",
     "start": "node --use_strict index.js",
     "dev": "nodemon --use_strict index.js",
     "bundle": "webpack"
@@ -44,4 +44,6 @@
     "react-tap-event-plugin": "^2.0.1",
     "validator": "^6.2.0"
   }
+
+
 }

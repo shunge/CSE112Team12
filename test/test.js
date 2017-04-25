@@ -2,7 +2,9 @@ var Phone = require('../client/js/phone.js');
 var phone = new Phone();
 
 describe('Checking phone Format', function(){
+
 	context('when no input phone number', function(){
+		"use strict";
 		it('should return false', function(){
 			phone.isValidPhoneNumber("").should.equal(false);
 		});
