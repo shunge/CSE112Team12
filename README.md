@@ -1,5 +1,4 @@
 # CSE112Team12
-[![Build Status](https://travis-ci.org/safarsi/CSE112Team12.svg?branch=master)](https://travis-ci.org/safarsi/CSE112Team12)
 
 ## Onboarding
 ### Setup
