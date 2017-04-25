@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Node application with Mocha/Enzyme",
   "main": "index.js",
+  "engine": "node >= 4.2.1",
   "directories": {
     "test": "test"
   },
@@ -45,6 +46,4 @@
     "react-tap-event-plugin": "^2.0.1",
     "validator": "^6.2.0"
   }
-
-
 }
